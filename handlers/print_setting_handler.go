@@ -24,8 +24,8 @@ func GetAllPrintSettings(c *gin.Context) {
 func GetPrintSetting(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 32)
 	if err != nil {
-	    c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID format"})
-	    return
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID format"})
+		return
 	}
 
 	var printSetting models.PrintSetting
@@ -59,8 +59,8 @@ func CreatePrintSetting(c *gin.Context) {
 func UpdatePrintSetting(c *gin.Context) {
 	id, err := strconv.ParseInt(c.Param("id"), 10, 32)
 	if err != nil {
-	    c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID format"})
-	    return
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid ID format"})
+		return
 	}
 
 	var printSetting models.PrintSetting
