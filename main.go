@@ -11,12 +11,10 @@ import (
 
 	"github.com/GrolimundSolutions/PrintStash-api/database"
 	"github.com/GrolimundSolutions/PrintStash-api/handlers"
+	"github.com/GrolimundSolutions/PrintStash-api/models"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/golang-migrate/migrate/v4"
-	"github.com/golang-migrate/migrate/v4/database/postgres"
-	_ "github.com/golang-migrate/migrate/v4/source/file"
-	"gorm.io/gorm"
+
 )
 
 func main() {
@@ -27,9 +25,7 @@ func main() {
 	}
 
 	// Run database migrations
-	if err := runMigrations(db); err != nil {
-		log.Fatalf("Failed to run database migrations: %v", err)
-	}
+	db.AutoMigrate(&models.Color{}, &models.Manufacturer{}, &models.Material{}, &models.FilamentSpool{}, &models.PrintSetting{})
 
 	// Setup Gin router
 	router := gin.Default()
@@ -110,57 +106,4 @@ func main() {
 	}
 
 	log.Println("Server exiting")
-}
-
-func runMigrations(db *gorm.DB) error {
-	log.Println("Starting database migrations...")
-	
-	sqlDB, err := db.DB()
-	if err != nil {
-		return err
-	}
-
-	driver, err := postgres.WithInstance(sqlDB, &postgres.Config{})
-	if err != nil {
-		return err
-	}
-
-	m, err := migrate.NewWithDatabaseInstance(
-		"file://migrations",
-		"postgres", driver)
-	if err != nil {
-		return err
-	}
-
-	// Get current version before migration
-	version, dirty, err := m.Version()
-	if err != nil && err != migrate.ErrNilVersion {
-		return err
-	}
-	
-	if err == migrate.ErrNilVersion {
-		log.Println("No migrations have been applied yet")
-	} else {
-		log.Printf("Current database version: %d (dirty: %v)\n", version, dirty)
-	}
-
-	// Apply migrations
-	err = m.Up()
-	if err == migrate.ErrNoChange {
-		log.Println("Database is up to date - no migrations applied")
-		return nil
-	} else if err != nil {
-		return err
-	}
-
-	// Get new version after migration
-	newVersion, _, err := m.Version()
-	if err != nil {
-		return err
-	}
-	
-	log.Printf("Successfully migrated database from version %d to %d\n", version, newVersion)
-	
-	log.Println("Migrations completed successfully")
-	return nil
 }
