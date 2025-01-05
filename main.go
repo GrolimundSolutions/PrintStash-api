@@ -14,9 +14,15 @@ import (
 	"github.com/GrolimundSolutions/PrintStash-api/models"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+	// Load .env file
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	// Initialize database connection
 	db, err := database.Connect()
 	if err != nil {
@@ -80,7 +86,7 @@ func main() {
 
 	// Configure server
 	srv := &http.Server{
-		Addr:    ":8000",
+		Addr:    ":" + os.Getenv("API_PORT"),
 		Handler: router,
 	}
 
