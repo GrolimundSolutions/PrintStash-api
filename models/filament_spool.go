@@ -2,10 +2,11 @@ package models
 
 import (
 	"time"
+	"gorm.io/gorm"
 )
 
 type FilamentSpool struct {
-	ID              int32     `gorm:"primaryKey;autoIncrement:true"`
+	gorm.Model
 	ManufacturerID  int16     `gorm:"not null"`
 	MaterialID      int16     `gorm:"not null"`
 	ColorID         int16     `gorm:"not null"`

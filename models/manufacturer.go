@@ -1,7 +1,9 @@
 package models
 
+import "gorm.io/gorm"
+
 type Manufacturer struct {
-	ID   int16  `gorm:"primaryKey;column:id"`
+	gorm.Model
 	Name string `gorm:"size:50;unique;not null"`
 }
 
