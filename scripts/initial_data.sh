@@ -2,23 +2,14 @@
 
 set -x # Aktiviert Debugging
 
+#
+## Global Variables
+#
 HOST="http://127.0.0.1:8000"
 
 #
 ## Manufacturers
 #
-PATH="/api/v1/manufacturers"
-
-Die Fehlermeldung zeigt, dass curl nicht gefunden wird, obwohl es auf deinem System installiert ist. Das Problem liegt vermutlich daran, dass die Shell, in der das Skript läuft, curl nicht korrekt erkennt. Hier sind einige Lösungsansätze:
-
-1. Vollständigen Pfad zu curl verwenden
-Ändere dein Skript so, dass der vollständige Pfad zu curl genutzt wird:
-
-bash
-Code kopieren
-#!/bin/bash
-
-HOST=http://127.0.0.1:8000
 PATH=/api/v1/manufacturers
 
 /usr/bin/curl $HOST$PATH -X POST -d '{"name": "eSUN"}'
@@ -29,4 +20,54 @@ PATH=/api/v1/manufacturers
 /usr/bin/curl $HOST$PATH -X POST -d '{"name": "Sunlu"}'
 /usr/bin/curl $HOST$PATH -X POST -d '{"name": "3DJake"}'
 /usr/bin/curl $HOST$PATH -X POST -d '{"name": "PrintWithSmile"}'
+unset PATH
 
+
+#
+## Materials
+#
+PATH=/api/v1/materials
+
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "PLA"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "PLA+"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "ecoPLA"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "PETG"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "rPETG"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "ABS"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "ABS+"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "ASA"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "TPU A95"}'
+unset PATH
+
+
+#
+## Colors
+#
+PATH=/api/v1/colors
+
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Weis"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Schwarz"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Rot"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Grün"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Blau"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Violet"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Grau"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Gold"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Cold White"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Orange"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Fire Engine Red"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Light Blue"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Hellgrün"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Transparent"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Transparent Grün"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Transparent Gelb"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Transparent Violet"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Cloudy Grey"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Silver"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Peak Green"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Gelb"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Olive Green"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Solid Black"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Solid White"}'
+/usr/bin/curl $HOST$PATH -X POST -d '{"name": "Pink"}'
+unset PATH
