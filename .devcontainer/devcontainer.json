@@ -3,7 +3,7 @@
 {
 	"name": "Go & PostgreSQL",
 	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
+	"service": "api",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 	"features": {
 		"ghcr.io/devcontainers/features/git:1": {},
